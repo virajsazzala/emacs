@@ -1,0 +1,14 @@
+emacs config
+============
+
+This is my emacs config -- forever modding.
+
+I'm making it usable across operating systems.
+
+In linux, place it in ~/.config
+
+
+non-config tracked changes
+--------------------------
+
+- swap left-ctrl and caps-lock
