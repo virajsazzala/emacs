@@ -9,7 +9,6 @@
 (defconst my/os-lin (eq system-type 'gnu/linux) "running on Linux.")
 (defconst my/os-mac (eq system-type 'darwin) "running on macOS.")
 
-
 ;; setup package repositories
 (require 'package)
 (add-to-list 'package-archives
@@ -17,6 +16,16 @@
 
 ;; enable org
 (require 'org)
+
+;; org directory
+(when my/os-win
+  (defconst my/org-loc "~/org/"))
+
+(when my/os-lin
+  (defconst my/org-loc "~/docs/org/"))
+
+;; set org agenda directory
+(setq org-agenda-files (directory-files-recursively my/org-loc "\\.org$"))
 
 ;; terminal package
 (when my/os-lin
@@ -44,11 +53,13 @@
   :ensure t
   :init
   (progn
-    (setq dashboard-items '((recents   . 5)
-			    (bookmarks . 5)))
+    (setq dashboard-items '((agenda    . 10)
+			    (recents   . 10)
+			    (bookmarks . 10)))
     (setq dashboard-banner-logo-title "The knowledge of all things is possible - Leonardo da Vinci")
-    (setq dashboard-set-file-icons t)
     (setq dashboard-startup-banner (concat (expand-file-name user-emacs-directory) "imgs/banner.gif"))
+    (setq dashboard-set-file-icons t)
+    (setq dashboard-week-agenda t)
     (setq dashboard-set-heading-icons t))
   :config
   (dashboard-setup-startup-hook))
