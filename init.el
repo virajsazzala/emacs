@@ -2,6 +2,7 @@
 (setq visible-bell t)            ;; flash when bell rings
 
 (load-theme 'leuven-dark t)      ;; load theme obvio
+(menu-bar-mode -1)               ;; rm menu bar
 
 ;; detect os
 (defconst my/os-win (eq system-type 'windows-nt) "running on Windows.")
@@ -13,6 +14,9 @@
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/") t)
+
+;; enable org
+(require 'org)
 
 ;; terminal package
 (when my/os-lin
