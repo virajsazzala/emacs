@@ -15,11 +15,11 @@
 	     '("melpa" . "https://melpa.org/packages/") t)
 
 ;; terminal package
-(use-package vterm
-  :if my/os-lin
-  :ensure t)
+(when my/os-lin
+  (use-package vterm
+    :ensure t))
 
 ;; powershell in shell
-(use-package powershell
-  :if my/os-win
-  :ensure t)
+(when my/os-win
+  (use-package powershell
+    :ensure t))
