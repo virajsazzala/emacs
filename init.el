@@ -27,3 +27,28 @@
 (when my/os-win
   (use-package powershell
     :ensure t))
+
+;; shortcut key assist
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
+;; icons
+(use-package all-the-icons
+  :ensure t
+  :if (display-graphic-p))
+
+;; startup dashboard
+(use-package dashboard
+  :ensure t
+  :init
+  (progn
+    (setq dashboard-items '((recents   . 5)
+			    (bookmarks . 5)))
+    (setq dashboard-banner-logo-title "The knowledge of all things is possible - Leonardo da Vinci")
+    (setq dashboard-set-file-icons t)
+    (setq dashboard-startup-banner (concat (expand-file-name user-emacs-directory) "imgs/banner.gif"))
+    (setq dashboard-set-heading-icons t))
+  :config
+  (dashboard-setup-startup-hook))
