@@ -1,3 +1,5 @@
+;;; init.el --- my emacs config -*- lexical-binding: t; -*-
+
 (setq inhibit-startup-message t) ;; no splash screen
 (setq visible-bell t)            ;; flash when bell rings
 
