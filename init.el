@@ -5,6 +5,7 @@
 
 (load-theme 'leuven-dark t)      ;; load theme obvio
 (menu-bar-mode -1)               ;; rm menu bar
+(tool-bar-mode -1)               ;; rm tool bar
 
 ;; detect os
 (defconst my/os-win (eq system-type 'windows-nt) "running on Windows.")
