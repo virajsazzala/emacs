@@ -40,6 +40,10 @@
   (use-package powershell
     :ensure t))
 
+;; magit
+(use-package magit
+  :ensure t)
+
 ;; shortcut key assist
 (use-package which-key
   :ensure t
