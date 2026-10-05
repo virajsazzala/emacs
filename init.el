@@ -35,6 +35,14 @@
   (use-package vterm
     :ensure t))
 
+;; set to path
+(when my/os-lin
+  (use-package exec-path-from-shell
+  :ensure t
+  :config
+  (setq exec-path-from-shell-arguments '("-l" "-i"))
+  (exec-path-from-shell-initialize)))
+
 ;; powershell in shell
 (when my/os-win
   (use-package powershell
@@ -50,10 +58,29 @@
   :config
   (which-key-mode))
 
+;; discord presence
+(use-package elcord
+  :ensure t
+  :config
+  (elcord-mode 1))
+
 ;; icons
 (use-package all-the-icons
   :ensure t
   :if (display-graphic-p))
+
+;; tuareg - ocaml
+(use-package tuareg
+  :ensure t
+  :mode (("\\.ocamlinit\\'" . tuareg-mode)))
+
+;; eglot - ocaml
+(use-package ocaml-eglot
+  :ensure t
+  :after tuareg
+  :hook
+  (tuareg-mode . ocaml-eglot)
+  (tuareg-mode . eglot-ensure))
 
 ;; startup dashboard
 (use-package dashboard
@@ -70,3 +97,12 @@
     (setq dashboard-set-heading-icons t))
   :config
   (dashboard-setup-startup-hook))
+
+;; elcord config
+(setq elcord-display-elapsed t              ; show "elapsed" time on the status
+      elcord-display-line-numbers nil       ; hide line numbers
+      elcord-use-major-mode-as-main-icon t  ; icon for the language, not Emacs
+      elcord-idle-timer 300                 ; go idle after 5 min
+      elcord-idle-message "went to get an energy drink"
+      elcord-refresh-rate 15                ; update interval in seconds
+      elcord-quiet t)                       ; stop elcord spamming *Messages*
